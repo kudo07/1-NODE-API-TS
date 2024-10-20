@@ -1,7 +1,11 @@
-import express from 'express';
+import express, { json, urlencoded } from 'express';
 import productRoutes from './routes/products/index';
 // you can import it as any name here
 const app = express();
+app.use(json());
+app.use(urlencoded({ extended: false }));
+//sitting between our routes and our application to get the json format from the requesst
+// parse it json in the format
 const port = 3000;
 
 // endpoints
