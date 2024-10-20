@@ -1,6 +1,6 @@
 import express, { json, urlencoded } from 'express';
 import productRoutes from './routes/products/index';
-// you can import it as any name here
+// you can import it as any namec,f here
 const app = express();
 app.use(json());
 app.use(urlencoded({ extended: false }));
