@@ -1,17 +1,30 @@
 ROUTES==>
 PRODUCTS
     PRODUCTSCHEMA.TS , PRODUCTCONTROLLER.TS
-    1. http://localhost:3000/products
+    1.GET ALL THE PRODUCTS 
 
-    2. http://localhost:3000/products/12312
+    http://localhost:3000/products/ 
 
-    3. POST http://localhost:3000/products/
+    2. GET THE PRODUCT BY ID
+    
+    http://localhost:3000/products/5
+
+    3. POST THE PRODUCT
+        http://localhost:3000/products/
         A.{
             "name":"iphone",
             "price":"312312"
         } 
 
 
-    4.  DELETE http://localhost:3000/products/3432
-    5. PUT http://localhost:3000/products/3432
+    4.  DELETE 
+        http://localhost:3000/products/3
+        
+
+    5. PUT 
+    {
+    "name":"UPDATED",
+    "price":"404"
+    }
+        http://localhost:3000/products/3432
 
