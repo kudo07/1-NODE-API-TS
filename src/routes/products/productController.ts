@@ -1,7 +1,8 @@
 import e, { Request, Response } from 'express';
 import { db } from '../../db/index.js';
-import { productTable } from '../../db/productSchema.js';
+import { createProductSchema, productTable } from '../../db/productSchema.js';
 import { eq } from 'drizzle-orm';
+import _ from 'lodash';
 export async function listProducts(req: Request, res: Response) {
   try {
     const products = await db.select().from(productTable);
@@ -31,10 +32,20 @@ export async function getProductById(req: Request, res: Response) {
 
 export async function createProduct(req: Request, res: Response) {
   // to get the first [product]
+  // console.log(Object.keys(createProductSchema.shape));
+  // PRODUCTSCHEMA.SHAPE WILL THE SHAPE FOR THE KEY WE WANT ONLY THE KEYS
+  // ["NAME","PRICE","DESCRIPTION",'IMAGE]
+  // console.log(req.cleanBody);
+  // ABC
+  // FROM THE VALIDATION FILE IN THE MIDDLEWARE
   try {
+    // const data = _.pick(req.body, Object.keys(createProductSchema.shape));
+    // GO TO THE VALIDATION FILE
+    // const [product] = await db.insert(productTable).values(data).returning();
+    //same thing just the different place relocating
     const [product] = await db
       .insert(productTable)
-      .values(req.body)
+      .values(req.cleanBody)
       .returning();
     res.status(201).json(product);
   } catch (error) {
