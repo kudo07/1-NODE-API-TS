@@ -17,3 +17,10 @@ export const productTable = pgTable('products', {
 export const createProductSchema = createInsertSchema(productTable).omit({
   id: true,
 });
+export const updateProductSchema = createInsertSchema(productTable)
+  .omit({
+    id: true,
+  })
+  .partial();
+
+// all the fields are optional

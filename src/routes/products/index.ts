@@ -8,7 +8,11 @@ import {
 } from './productController';
 import { validateDate } from '../../middlewares/validationMiddleware';
 import { createInsertSchema } from 'drizzle-zod';
-import { createProductSchema, productTable } from '../../db/productSchema';
+import {
+  createProductSchema,
+  productTable,
+  updateProductSchema,
+} from '../../db/productSchema';
 
 // but we use drizzle-zod which we dont use double schema declaration
 // const createProductSchema = z.object({
@@ -25,6 +29,6 @@ router.get('/', listProducts);
 router.get('/:id', getProductById);
 
 router.post('/', validateDate(createProductSchema), createProduct);
-router.put('/:id', updateProduct);
+router.put('/:id', validateDate(updateProductSchema), updateProduct);
 router.delete('/:id', deleteProduct);
 export default router;
